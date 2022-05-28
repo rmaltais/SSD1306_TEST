@@ -9,3 +9,4 @@ compile_commands.json
 .clangd
 .cache
 Adafruit_GFX
+ds18b20-single
