@@ -8,7 +8,9 @@ DigitalOut myLed(PC_13);
 I2C i2c(PB_9, PB_8); // Identification préalable
 Adafruit_SSD1306_I2c oled(i2c, PA_4, 0x78, 64, 128); // Indique mon ecran actuel 128x64 - PA_4 (Fake pin)
 
-DS18B20 sensor(PA_5);   
+DS18B20 sensor(PA_5); 
+int col = 0;
+
 
 int main() {
   bool rety;
@@ -21,6 +23,7 @@ int main() {
   oled.clearDisplay();
 
   while (1) {
+    oled.clearDisplay();
     myLed = !myLed;
     float temperature = sensor.readTemp();
 
@@ -28,7 +31,19 @@ int main() {
     oled.setTextCursor(0, 30);
     oled.printf("Temp: %0.1f\r", temperature);
     oled.display();
+    for (int i = 0; i < 10; i++) {
+      oled.setTextSize(2);
+      oled.setTextCursor(col, 0);
+      oled.putc(175);
+      oled.display();
+      col = col + 12;
+      if (col > 118){col = 0;}
+      HAL_Delay(250);
+      
+    }
 
     HAL_Delay(2000);
   }
 }
+
+
