@@ -38,11 +38,11 @@ int main() {
       oled.display();
       col = col + 12;
       if (col > 118){col = 0;}
-      HAL_Delay(250);
+      HAL_Delay(50);
       
     }
 
-    HAL_Delay(2000);
+    HAL_Delay(1000);
   }
 }
 
